@@ -92,6 +92,12 @@ Light GetMainLight()
 }
 
 
+Light GetMainLight(float4 shadowCoord)
+{
+	Light light = GetMainLight();
+	light.shadowAttenuation = MainLightRealtimeShadow(shadowCoord);
+	return light;
+}
 
 Light GetAdditionalLight(int i, float3 positionWS)
 {
@@ -151,33 +157,31 @@ int GetAdditionalLightsCount()
 
 
 
-//=============================================================================================================================
-// Original MainLightNode script by 'Ciro Continisio':  https://gist.github.com/ciro-unity/a55d73bcda93ca149cf7fd7e407f8812
-//=============================================================================================================================
-void MainLightNode_float(float3 worldPos, out float3 direction, out float3 color, out float attenuation, out float distAttenuation)
+void LWRPLightingFunction_float(float3 Position, out float3 Direction, out float3 Color, out float ShadowAttenuation, out float DistanceAttenuation)
 {
-	Light mainLight = GetMainLight();
+#ifdef LIGHTWEIGHT_LIGHTING_INCLUDED
 
-	color = mainLight.color;
-	direction = mainLight.direction;
-	attenuation = mainLight.shadowAttenuation;
-	distAttenuation = mainLight.distanceAttenuation;
-
-	float4 shadowCoord;
-#ifdef _SHADOWS_ENABLED
-#if SHADOWS_SCREEN
-	float4 clipPos = TransformWorldToHClip(WorldPos);
-	shadowCoord = ComputeShadowCoord(clipPos);
+	//Actual light data from the pipeline
+	Light light = GetMainLight(GetShadowCoord(GetVertexPositionInputs(Position)));
+	Direction = light.direction;
+	Color = light.color;
+	ShadowAttenuation = light.shadowAttenuation;
+	DistanceAttenuation = light.distanceAttenuation;
 #else
-	shadowCoord = TransformWorldToShadowCoord(WorldPos);
-#endif
-	attenuation = MainLightRealtimeShadowAttenuation(shadowCoord);
+
+	//Hardcoded data, used for the preview shader inside the graph
+	//where light functions are not available
+	Direction = float3(-0.5, 0.5, -0.5);
+	Color = float3(1, 1, 1);
+	ShadowAttenuation = 0.4;
+	DistanceAttenuation = 0.4;
+
 #endif
 }
 
-void AdditionalLightNode_float(float3 worldPos, float3 normal, out float3 color) {
+void AdditionalLightNode_float(float3 worldPos, float3 normal, out float3 direction, out float3 color) {
 	half3 diffuseColor = 0;
-
+	half3 lightDir = 0;
 	int pixelLightCount = GetAdditionalLightsCount();
 	for (int i = 0; i < pixelLightCount; ++i)
 	{
@@ -185,8 +189,10 @@ void AdditionalLightNode_float(float3 worldPos, float3 normal, out float3 color)
 		half lightIntensity = dot(normal, light.direction);
 
 		half3 attenuatedLightColor = light.color * (light.distanceAttenuation * light.shadowAttenuation);
-		diffuseColor += attenuatedLightColor * lightIntensity;
+		diffuseColor += attenuatedLightColor;
+		lightDir += light.direction;
 	}
 
 	color = diffuseColor;
+	direction = lightDir;
 }
