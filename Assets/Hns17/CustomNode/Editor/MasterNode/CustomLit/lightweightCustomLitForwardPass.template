@@ -164,7 +164,7 @@ ${PixelShaderSurfaceRemap}
 			half3 atte = AttenuatedLightColor(inputData) + inputData.bakedGI;
 			half3 emissive = Color * EmissiveIntensity;
 			
-			half4 finalColor = half4(atte * Color + emissive, 1);
+			half4 finalColor = half4(Color + emissive, 1);
 
 			// Computes fog factor per-vertex
 			finalColor.rgb = MixFog(finalColor.rgb, IN.fogFactorAndVertexLight.x);

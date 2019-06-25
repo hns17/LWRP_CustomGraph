@@ -157,42 +157,42 @@ int GetAdditionalLightsCount()
 
 
 
-void LWRPLightingFunction_float(float3 Position, out float3 Direction, out float3 Color, out float ShadowAttenuation, out float DistanceAttenuation)
+void LWRPLightingFunction_float(float3 Position, out float3 direction, out float3 color, out float attenuation)
 {
 #ifdef LIGHTWEIGHT_LIGHTING_INCLUDED
 
 	//Actual light data from the pipeline
 	Light light = GetMainLight(GetShadowCoord(GetVertexPositionInputs(Position)));
-	Direction = light.direction;
-	Color = light.color;
-	ShadowAttenuation = light.shadowAttenuation;
-	DistanceAttenuation = light.distanceAttenuation;
+	
+	direction = light.direction;
+	color = light.color;
+	attenuation = light.shadowAttenuation * light.distanceAttenuation;
 #else
 
 	//Hardcoded data, used for the preview shader inside the graph
 	//where light functions are not available
-	Direction = float3(-0.5, 0.5, -0.5);
-	Color = float3(1, 1, 1);
-	ShadowAttenuation = 0.4;
-	DistanceAttenuation = 0.4;
+	direction = float3(0, 0, 0);
+	color = float3(0, 0, 0);
+	attenuation = 0;
 
 #endif
 }
 
-void AdditionalLightNode_float(float3 worldPos, float3 normal, out float3 direction, out float3 color) {
-	half3 diffuseColor = 0;
+void AdditionalLightNode_float(float3 worldPos, float3 normal, out float3 direction, out float3 atteColor, out float attenuation) {
+//void AdditionalLightNode_float(float3 worldPos, out float3 color) {
+	half3 lightColor = 0;
 	half3 lightDir = 0;
+	half lightAtte;
 	int pixelLightCount = GetAdditionalLightsCount();
 	for (int i = 0; i < pixelLightCount; ++i)
 	{
 		Light light = GetAdditionalLight(i, worldPos);
-		half lightIntensity = dot(normal, light.direction);
-
-		half3 attenuatedLightColor = light.color * (light.distanceAttenuation * light.shadowAttenuation);
-		diffuseColor += attenuatedLightColor;
+		lightColor += light.color * light.distanceAttenuation * light.shadowAttenuation;;
 		lightDir += light.direction;
+		lightAtte += light.distanceAttenuation * light.shadowAttenuation;
 	}
 
-	color = diffuseColor;
+	attenuation = lightAtte;
+	atteColor = lightColor;
 	direction = lightDir;
 }

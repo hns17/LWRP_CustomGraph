@@ -40,6 +40,17 @@ half3 AttenuatedLightColor(InputData inputData) {
 	MixRealtimeAndBakedGI(mainLight, inputData.normalWS, inputData.bakedGI, half4(0, 0, 0, 0));
 
 	half3 attenuatedLightColor = mainLight.color * (mainLight.distanceAttenuation * mainLight.shadowAttenuation);
+	
+#ifdef _ADDITIONAL_LIGHTS
+	int pixelLightCount = GetAdditionalLightsCount();
+	for (int i = 0; i < pixelLightCount; ++i)
+	{
+		Light light = GetAdditionalLight(i, inputData.positionWS);
+		attenuatedLightColor += light.color * (light.distanceAttenuation * light.shadowAttenuation);
+	}
+#endif	
+
+	
 	return attenuatedLightColor;
 }
 
