@@ -36,8 +36,6 @@ namespace Hns17.CustomNode
                 LegacyMasterNode.DiffuseSlotId,
                 LegacyMasterNode.NormalSlotId,
                 LegacyMasterNode.EmissionSlotId,
-                LegacyMasterNode.SmoothnessSlotId,
-                LegacyMasterNode.OcclusionSlotId,
                 LegacyMasterNode.AlphaSlotId,
                 LegacyMasterNode.AlphaThresholdSlotId
             },
@@ -55,8 +53,6 @@ namespace Hns17.CustomNode
                 LegacyMasterNode.DiffuseSlotId,
                 LegacyMasterNode.NormalSlotId,
                 LegacyMasterNode.EmissionSlotId,
-                LegacyMasterNode.SmoothnessSlotId,
-                LegacyMasterNode.OcclusionSlotId,
                 LegacyMasterNode.AlphaSlotId,
                 LegacyMasterNode.AlphaThresholdSlotId,
                 LegacyMasterNode.CoefficientSlotId
@@ -76,7 +72,6 @@ namespace Hns17.CustomNode
                 LegacyMasterNode.NormalSlotId,
                 LegacyMasterNode.EmissionSlotId,
                 LegacyMasterNode.SmoothnessSlotId,
-                LegacyMasterNode.OcclusionSlotId,
                 LegacyMasterNode.AlphaSlotId,
                 LegacyMasterNode.AlphaThresholdSlotId,
                 LegacyMasterNode.SpecularGlossSlotId
@@ -277,7 +272,10 @@ namespace Hns17.CustomNode
                 defines.AppendLine("#define _HALFLAMBERT 1");
 
             if (masterNode.shadeType == LegacyMasterNode.ShadeType.BlinnPhong)
+            {
                 defines.AppendLine("#define _BlinnPhong 1");
+                defines.AppendLine("#define _SPECULAR_COLOR 1");
+            }
 
             if (masterNode.IsSlotConnected(LegacyMasterNode.AlphaThresholdSlotId))
                 defines.AppendLine("#define _AlphaClip 1");

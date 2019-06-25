@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ZeldaToon_MatCapOutLine
-  m_Shader: {fileID: -6465566751694194690, guid: 8de3c275abedba6419b034974ecc703a,
+  m_Shader: {fileID: -6465566751694194690, guid: 869c2e7b3a8f1334f98d2d6c901aa406,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -40,6 +40,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: 26ff037378ce5424eac94f7e5f52eebb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MatCap_B5DAEAE1_Texture2D9157521F_606119385:
+        m_Texture: {fileID: 2800000, guid: 26ff037378ce5424eac94f7e5f52eebb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MatCap_ECDF8C82_Texture2D9157521F_606119385:
         m_Texture: {fileID: 2800000, guid: 26ff037378ce5424eac94f7e5f52eebb, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -55,7 +59,7 @@ Material:
     - Boolean_EB67DD32: 1
     - Vector1_49BB3994: 1
     - Vector1_6E16B059: 0.8
-    - Vector1_8AF88EEA: 1.4
+    - Vector1_8AF88EEA: 0.64
     - Vector1_97A6793E: 300
     - Vector1_C78429BD: 50
     m_Colors:
@@ -63,3 +67,4 @@ Material:
     - Color_6AB34459: {r: 0, g: 0, b: 0, a: 0}
     - Color_7B48FBFE: {r: 1, g: 1, b: 1, a: 0}
     - Color_7B4A8B00: {r: 0.5943396, g: 0.5074315, b: 0.5074315, a: 0}
+    - Color_AEC6751: {r: 0, g: 0, b: 0, a: 0}

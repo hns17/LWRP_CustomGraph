@@ -116,7 +116,6 @@ ${PixelShaderSurfaceInputs}
 		float3 Normal = float3(0, 0, 1);
 		float3 Emission = 0;
 		float Smoothness = 0.5;
-		float Occlusion = 1;
 		float Alpha = 1;
 		float AlphaClipThreshold = 0;
 		float Coefficient = 1;
@@ -153,12 +152,11 @@ ${PixelShaderSurfaceRemap}
 #if _HALFLAMBERT
 		half4 color = LightweightFragmentHalfLambert(inputData, 
 													Diffuse, 
-													Smoothness,
 													Emission, 
 													Alpha,
 													Coefficient);
 #elif _BlinnPhong
-		half4 color = LightweightFragmentBlinn(inputData, 
+		half4 color = LightweightFragmentBlinnPhong(inputData, 
 													Diffuse,
 													float4(SpecularGloss, 1),
 													Smoothness,
@@ -167,7 +165,6 @@ ${PixelShaderSurfaceRemap}
 #else
 		half4 color = LightweightFragmentLambert(inputData, 
 													Diffuse, 
-													Smoothness,
 													Emission, 
 													Alpha);
 #endif

@@ -60,7 +60,7 @@ half3 LightingHalfLambert(half3 lightColor, half3 lightDir, half3 normal, float 
 	return lightColor * NdotL;
 }
 
-half4 LightweightFragmentLambert(InputData inputData, half3 diffuse, half smoothness, half3 emission, half alpha)
+half4 LightweightFragmentLambert(InputData inputData, half3 diffuse, half3 emission, half alpha)
 {
 	Light mainLight = GetMainLight(inputData.shadowCoord);
 	MixRealtimeAndBakedGI(mainLight, inputData.normalWS, inputData.bakedGI, half4(0, 0, 0, 0));
@@ -86,37 +86,7 @@ half4 LightweightFragmentLambert(InputData inputData, half3 diffuse, half smooth
 	return half4(finalColor, alpha);
 }
 
-half4 LightweightFragmentBlinn(InputData inputData, half3 diffuse, half4 specularGloss, half smoothness, half3 emission, half alpha)
-{
-	Light mainLight = GetMainLight(inputData.shadowCoord);
-	MixRealtimeAndBakedGI(mainLight, inputData.normalWS, inputData.bakedGI, half4(0, 0, 0, 0));
-
-	half3 attenuatedLightColor = mainLight.color * (mainLight.distanceAttenuation * mainLight.shadowAttenuation);
-	half3 diffuseColor = inputData.bakedGI + LightingLambert(attenuatedLightColor, mainLight.direction, inputData.normalWS);
-	half3 specularColor = LightingSpecular(attenuatedLightColor, mainLight.direction, inputData.normalWS, inputData.viewDirectionWS, specularGloss, smoothness);
-
-#ifdef _ADDITIONAL_LIGHTS
-	int pixelLightCount = GetAdditionalLightsCount();
-	for (int i = 0; i < pixelLightCount; ++i)
-	{
-		Light light = GetAdditionalLight(i, inputData.positionWS);
-		half3 attenuatedLightColor = light.color * (light.distanceAttenuation * light.shadowAttenuation);
-		diffuseColor += LightingLambert(attenuatedLightColor, light.direction, inputData.normalWS);
-		specularColor += LightingSpecular(attenuatedLightColor, light.direction, inputData.normalWS, inputData.viewDirectionWS, specularGloss, smoothness);
-	}
-#endif
-
-#ifdef _ADDITIONAL_LIGHTS_VERTEX
-	diffuseColor += inputData.vertexLighting;
-#endif
-
-	half3 finalColor = diffuseColor * diffuse + emission;
-	finalColor += specularColor;
-	return half4(finalColor, alpha);
-}
-
-
-half4 LightweightFragmentHalfLambert(InputData inputData, half3 diffuse, half smoothness, half3 emission, half alpha, float coef)
+half4 LightweightFragmentHalfLambert(InputData inputData, half3 diffuse, half3 emission, half alpha, float coef)
 {
 	Light mainLight = GetMainLight(inputData.shadowCoord);
 	MixRealtimeAndBakedGI(mainLight, inputData.normalWS, inputData.bakedGI, half4(0, 0, 0, 0));

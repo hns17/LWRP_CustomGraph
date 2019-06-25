@@ -27,7 +27,6 @@ namespace Hns17.CustomNode
         public const string NormalSlotName = "Normal";
         public const string EmissionSlotName = "Emission";
         public const string SmoothnessSlotName = "Smoothness";
-        public const string OcclusionSlotName = "Occlusion";
         public const string AlphaSlotName = "Alpha";
         public const string AlphaClipThresholdSlotName = "AlphaClipThreshold";
         public const string CoefficientSlotName = "Coefficient";
@@ -38,7 +37,6 @@ namespace Hns17.CustomNode
         public const int NormalSlotId = 1;
         public const int EmissionSlotId = 4;
         public const int SmoothnessSlotId = 5;
-        public const int OcclusionSlotId = 6;
         public const int AlphaSlotId = 7;
         public const int AlphaThresholdSlotId = 8;
         public const int CoefficientSlotId = 2;
@@ -133,33 +131,45 @@ namespace Hns17.CustomNode
             AddSlot(new ColorRGBMaterialSlot(DiffuseSlotId, DiffuseSlotName, DiffuseSlotName, SlotType.Input, Color.grey.gamma, ColorMode.Default, ShaderStageCapability.Fragment));
             AddSlot(new NormalMaterialSlot(NormalSlotId, NormalSlotName, NormalSlotName, CoordinateSpace.Tangent, ShaderStageCapability.Fragment));
             AddSlot(new ColorRGBMaterialSlot(EmissionSlotId, EmissionSlotName, EmissionSlotName, SlotType.Input, Color.black, ColorMode.Default, ShaderStageCapability.Fragment));
-            AddSlot(new Vector1MaterialSlot(SmoothnessSlotId, SmoothnessSlotName, SmoothnessSlotName, SlotType.Input, 0.5f, ShaderStageCapability.Fragment));
-            AddSlot(new Vector1MaterialSlot(OcclusionSlotId, OcclusionSlotName, OcclusionSlotName, SlotType.Input, 1f, ShaderStageCapability.Fragment));
             AddSlot(new Vector1MaterialSlot(AlphaSlotId, AlphaSlotName, AlphaSlotName, SlotType.Input, 1f, ShaderStageCapability.Fragment));
             AddSlot(new Vector1MaterialSlot(AlphaThresholdSlotId, AlphaClipThresholdSlotName, AlphaClipThresholdSlotName, SlotType.Input, 0.5f, ShaderStageCapability.Fragment));
 
             if(shadeType != ShadeType.Lambert)
             {
                 if(shadeType == ShadeType.HalfLambert)
+                {
                     AddSlot(new Vector1MaterialSlot(CoefficientSlotId, CoefficientSlotName, CoefficientSlotName, SlotType.Input, 1f, ShaderStageCapability.Fragment));
+
+                    RemoveSlotsNameNotMatching(
+                    new[]
+                    {
+                        PositionSlotId,
+                        DiffuseSlotId,
+                        NormalSlotId,
+                        EmissionSlotId,
+                        AlphaSlotId,
+                        AlphaThresholdSlotId,
+                        CoefficientSlotId
+                    }, true);
+                }
                 else
+                {
+                    AddSlot(new Vector1MaterialSlot(SmoothnessSlotId, SmoothnessSlotName, SmoothnessSlotName, SlotType.Input, 0.5f, ShaderStageCapability.Fragment));
                     AddSlot(new ColorRGBMaterialSlot(SpecularGlossSlotId, SpecularGlossSlotName, SpecularGlossSlotName, SlotType.Input, Color.grey, ColorMode.Default, ShaderStageCapability.Fragment));
 
-                
-
-                RemoveSlotsNameNotMatching(
-                new[]
-                {
-                    PositionSlotId,
-                    DiffuseSlotId,
-                    NormalSlotId,
-                    EmissionSlotId,
-                    SmoothnessSlotId,
-                    OcclusionSlotId,
-                    AlphaSlotId,
-                    AlphaThresholdSlotId,
-                    shadeType == ShadeType.HalfLambert ? CoefficientSlotId : SpecularGlossSlotId
-                }, true);
+                    RemoveSlotsNameNotMatching(
+                    new[]
+                    {
+                        PositionSlotId,
+                        DiffuseSlotId,
+                        NormalSlotId,
+                        EmissionSlotId,
+                        AlphaSlotId,
+                        AlphaThresholdSlotId,
+                        SmoothnessSlotId,
+                        SpecularGlossSlotId
+                    }, true);
+                }
             }
             else
             {
@@ -170,8 +180,6 @@ namespace Hns17.CustomNode
                     DiffuseSlotId,
                     NormalSlotId,
                     EmissionSlotId,
-                    SmoothnessSlotId,
-                    OcclusionSlotId,
                     AlphaSlotId,
                     AlphaThresholdSlotId
                 }, true);

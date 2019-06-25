@@ -129,7 +129,6 @@ ${PixelShaderSurfaceInputs}
 		float AlphaClipThreshold = 0;
 		
 		float3 Normal = float3(0, 0, 1);
-		float EmissiveIntensity = 0.5;
 
 
 		// Surface description remap performed by graph
@@ -161,10 +160,7 @@ ${PixelShaderSurfaceRemap}
 			inputData.vertexLighting = IN.fogFactorAndVertexLight.yzw;
 			inputData.bakedGI = SAMPLE_GI(IN.lightmapUV, IN.vertexSH, inputData.normalWS);
 			
-			half3 atte = AttenuatedLightColor(inputData) + inputData.bakedGI;
-			half3 emissive = Color * EmissiveIntensity;
-			
-			half4 finalColor = half4(Color + emissive, 1);
+			half4 finalColor = half4(Color, 1);
 
 			// Computes fog factor per-vertex
 			finalColor.rgb = MixFog(finalColor.rgb, IN.fogFactorAndVertexLight.x);

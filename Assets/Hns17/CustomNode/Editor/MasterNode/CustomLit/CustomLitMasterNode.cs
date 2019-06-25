@@ -28,15 +28,12 @@ namespace Hns17.CustomNode
         public const string AlphaSlotName = "Alpha";
         public const string AlphaClipThresholdSlotName = "AlphaClipThreshold";
         public const string PositionName = "Position";
-        public const string EmissiveIntensitySlotName = "EmissiveIntensity";
 
         public const int ColorSlotId = 0;
         public const int NormalSlotId = 1;
         public const int AlphaSlotId = 2;
         public const int AlphaThresholdSlotId = 3;
         public const int PositionSlotId = 4;
-        public const int EmissiveIntensitySlotId = 5;
-        
 
 
         public enum ShadeType { Lit, UnLit}
@@ -165,8 +162,7 @@ namespace Hns17.CustomNode
 
             if (isLit) {
                 AddSlot(new NormalMaterialSlot(NormalSlotId, NormalSlotName, NormalSlotName, CoordinateSpace.Tangent, ShaderStageCapability.Fragment));
-                AddSlot(new Vector1MaterialSlot(EmissiveIntensitySlotId, EmissiveIntensitySlotName, EmissiveIntensitySlotName, SlotType.Input, 0.5f, ShaderStageCapability.Fragment));
-
+              
                RemoveSlotsNameNotMatching(
                    new[]
                    {
@@ -174,8 +170,7 @@ namespace Hns17.CustomNode
                         ColorSlotId,
                         AlphaSlotId,
                         AlphaThresholdSlotId,
-                        NormalSlotId,
-                        EmissiveIntensitySlotId
+                        NormalSlotId
                    }, true);
             }
             else

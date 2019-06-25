@@ -37,8 +37,7 @@ namespace Hns17.CustomNode
                 CustomLitMasterNode.ColorSlotId,
                 CustomLitMasterNode.NormalSlotId,
                 CustomLitMasterNode.AlphaSlotId,
-                CustomLitMasterNode.AlphaThresholdSlotId,
-                CustomLitMasterNode.EmissiveIntensitySlotId
+                CustomLitMasterNode.AlphaThresholdSlotId
             },
             VertexShaderSlots = new List<int>()
             {
