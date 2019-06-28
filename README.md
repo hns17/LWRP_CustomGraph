@@ -106,7 +106,7 @@
 
 ### 라. Outline
 
-![](./Img/Outline.gif)
+![](./Img/OutLine.gif)
 
 - ShaderGraph로 만든 Outline Sample
 - VertexOutline, StencilOutline, Matcap Outline, Rim Outline
