@@ -157,7 +157,7 @@ ${PixelShaderSurfaceRemap}
 			inputData.shadowCoord = IN.shadowCoord;
 			
 			inputData.fogCoord = IN.fogFactorAndVertexLight.x;
-			inputData.vertexLighting = IN.fogFactorAndVertexLight.yzw;
+			//inputData.vertexLighting = IN.fogFactorAndVertexLight.yzw;
 			inputData.bakedGI = SAMPLE_GI(IN.lightmapUV, IN.vertexSH, inputData.normalWS);
 			Light mainLight = GetMainLight(inputData.shadowCoord);
 
