@@ -86,13 +86,13 @@
 
 ### 가. CustomNodeSample
 
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FKUOIb%2Fbtqv17gPMpt%2FMK7OrLkEjA9xI0zmCmMPJ1%2Fimg.gif)
+![](./Img/CustomNodeSampleScene.gif)
 
 - MasterGraph Sample
 
 ### 나. ToonSampleScene
 
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FHfyz2%2FbtqvWSlkkE3%2FwCJsiCOedOvj8a0auW91kk%2Fimg.gif)
+![](./Img/ToonSampleScene.gif)
 
 - CustomLit MasterNode로 제작한 간단한 ToonGraph
 - Ref : https://www.youtube.com/channel/UC5F69YiFSK7zVaNHeX78Qdw
@@ -106,7 +106,7 @@
 
 ### 라. Outline
 
-![](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fk.kakaocdn.net%2Fdn%2FbJOZhm%2FbtqwaHwRAcX%2FULzUZCWoqF7PUxWG4Uikm0%2Fimg.gif)
+![](./Img/Outline.gif)
 
 - ShaderGraph로 만든 Outline Sample
 - VertexOutline, StencilOutline, Matcap Outline, Rim Outline
