@@ -187,7 +187,8 @@ void AdditionalLightNode_float(float3 worldPos, float3 normal, out float3 direct
 	for (int i = 0; i < pixelLightCount; ++i)
 	{
 		Light light = GetAdditionalLight(i, worldPos);
-		lightColor += light.color * light.distanceAttenuation * light.shadowAttenuation;;
+
+		lightColor += light.color * light.distanceAttenuation * light.shadowAttenuation;
 		lightDir += light.direction;
 		lightAtte += light.distanceAttenuation * light.shadowAttenuation;
 	}
