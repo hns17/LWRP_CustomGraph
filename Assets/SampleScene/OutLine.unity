@@ -130,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 7030573219059194552, guid: bd8a766bbf452aa4591f599fc165326d,
         type: 3}
       propertyPath: m_Name
-      value: UC_ZeldaToon (2)
+      value: MatCapOutLine
       objectReference: {fileID: 0}
     - target: {fileID: 7030573219058960024, guid: bd8a766bbf452aa4591f599fc165326d,
         type: 3}
@@ -373,7 +373,7 @@ PrefabInstance:
     - target: {fileID: 7030573219059194552, guid: bd8a766bbf452aa4591f599fc165326d,
         type: 3}
       propertyPath: m_Name
-      value: UC_ZeldaToon (1)
+      value: VertexOutLine
       objectReference: {fileID: 0}
     - target: {fileID: 7030573219058960024, guid: bd8a766bbf452aa4591f599fc165326d,
         type: 3}
@@ -413,7 +413,7 @@ PrefabInstance:
     - target: {fileID: 7030573219058960024, guid: bd8a766bbf452aa4591f599fc165326d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7030573219058960024, guid: bd8a766bbf452aa4591f599fc165326d,
         type: 3}
@@ -530,7 +530,7 @@ PrefabInstance:
     - target: {fileID: 7030573219059194552, guid: bd8a766bbf452aa4591f599fc165326d,
         type: 3}
       propertyPath: m_Name
-      value: UC_ZeldaToon
+      value: StencilMask
       objectReference: {fileID: 0}
     - target: {fileID: 7030573219058960024, guid: bd8a766bbf452aa4591f599fc165326d,
         type: 3}
@@ -570,7 +570,7 @@ PrefabInstance:
     - target: {fileID: 7030573219058960024, guid: bd8a766bbf452aa4591f599fc165326d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7030573219058960024, guid: bd8a766bbf452aa4591f599fc165326d,
         type: 3}
@@ -619,7 +619,7 @@ PrefabInstance:
     - target: {fileID: 7030573219059194552, guid: bd8a766bbf452aa4591f599fc165326d,
         type: 3}
       propertyPath: m_Name
-      value: UC_ZeldaToon (3)
+      value: RimOutLine
       objectReference: {fileID: 0}
     - target: {fileID: 7030573219058960024, guid: bd8a766bbf452aa4591f599fc165326d,
         type: 3}

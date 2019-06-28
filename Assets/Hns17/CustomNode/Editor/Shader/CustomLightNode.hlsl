@@ -178,7 +178,7 @@ void LWRPLightingFunction_float(float3 Position, out float3 direction, out float
 #endif
 }
 
-void AdditionalLightNode_float(float3 worldPos, float3 normal, out float3 direction, out float3 atteColor, out float attenuation) {
+void AdditionalLightNode_float(float3 worldPos, out float3 direction, out float3 atteColor, out float attenuation) {
 //void AdditionalLightNode_float(float3 worldPos, out float3 color) {
 	half3 lightColor = 0;
 	half3 lightDir = 0;

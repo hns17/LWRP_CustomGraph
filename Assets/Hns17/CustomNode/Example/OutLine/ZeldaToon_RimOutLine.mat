@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ZeldaToon_RimOutLine
-  m_Shader: {fileID: -6465566751694194690, guid: 23276845397a31a4d88ed52be138c2c5,
+  m_Shader: {fileID: -6465566751694194690, guid: 1c93867de71f5a0469ea4a274d4e0fb9,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

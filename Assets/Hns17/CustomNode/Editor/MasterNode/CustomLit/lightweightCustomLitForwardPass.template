@@ -155,12 +155,14 @@ ${PixelShaderSurfaceRemap}
 	#endif
 
 			inputData.shadowCoord = IN.shadowCoord;
-
+			
 			inputData.fogCoord = IN.fogFactorAndVertexLight.x;
 			inputData.vertexLighting = IN.fogFactorAndVertexLight.yzw;
 			inputData.bakedGI = SAMPLE_GI(IN.lightmapUV, IN.vertexSH, inputData.normalWS);
-			
-			half4 finalColor = half4(Color, 1);
+			Light mainLight = GetMainLight(inputData.shadowCoord);
+
+			MixRealtimeAndBakedGI(mainLight, inputData.normalWS, inputData.bakedGI, half4(0, 0, 0, 0));
+			half4 finalColor = half4(Color + inputData.bakedGI, 1);
 
 			// Computes fog factor per-vertex
 			finalColor.rgb = MixFog(finalColor.rgb, IN.fogFactorAndVertexLight.x);
