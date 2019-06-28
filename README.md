@@ -95,7 +95,7 @@
 ![](./Img/ToonSampleScene.gif)
 
 - CustomLit MasterNode로 제작한 간단한 ToonGraph
-- Ref : https://www.youtube.com/channel/UC5F69YiFSK7zVaNHeX78Qdw
+- Ref : https://www.youtube.com/watch?v=T8TCW7Vlh58
 
 ### 다. ToonSampleScene2
 
