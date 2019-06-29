@@ -118,3 +118,7 @@
 
 - LightMap Test Sample Scene
 - Ref : https://hns17.tistory.com/entry/LWRP%EC%97%90%EC%84%9C-Subtractive-%EB%AA%A8%EB%93%9C%EB%A1%9C-LightMap-Bake%ED%95%98%EA%B8%B0?category=708112
+
+## 5. 기타
+
+- GUI Update Error가 있지만 사용에는 크게 어려움이 없어보인다.
