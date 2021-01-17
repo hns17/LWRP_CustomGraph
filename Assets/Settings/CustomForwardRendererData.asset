@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     passTag: StencilOutLine
-    Event: 1000
+    Event: 300
     filterSettings:
       RenderQueueType: 0
       LayerMask:

@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/SampleScene/OutLine.unity
-    guid: 9341cc125e1c1de448bee34c3ba06415
+    path: Assets/SampleScene/ToonSampleScene.unity
+    guid: 09565877d03e33c438e72608ea497dad
   m_configObjects: {}
